@@ -1,0 +1,33 @@
+.simple-list{
+	@extend %listreset;
+	margin: 0 0 42px;
+
+	li{
+		display: block;
+		position: relative;
+		padding: 0 0 6px 29px;
+
+		@include media('<tablet') {
+			padding: 0 0 6px 25px;
+		}
+
+		&:before{
+			@include size(8px);
+			content: '';
+			background: #4f4236;
+			position: absolute;
+			top: 8px;
+			left: 1px;
+			border-radius: 50%;
+
+			@include media('<tablet') {
+				top: 7px;
+			}
+		}
+	}
+}
+
+.benefit-title{
+	display: block;
+	margin: 0 0 6px;
+}

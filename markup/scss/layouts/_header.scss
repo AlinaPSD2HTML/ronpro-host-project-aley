@@ -1,0 +1,236 @@
+#header{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	border-bottom: 1px solid #777e7d;
+	z-index: 999;
+	padding: 14px 2px 15px;
+
+	.home &{
+		border-bottom: 1px solid #677d93;
+	}
+
+	.logo{
+		float: left;
+	}
+
+	#nav{
+		float: right;
+		width: 83%;
+		text-align: right;
+
+		@include media('<desktop') {
+			width: auto;
+			text-align: left;
+			padding: 4px 0 0;
+		}
+	}
+}
+
+#nav{
+	.drop{
+		float: right;
+
+		ul{
+			@extend %listreset;
+			text-transform: uppercase;
+			font-size: 14px;
+			line-height: 16px;
+			padding: 17px 0 0;
+			float: left;
+
+			@include media('<desktop') {
+				padding: 0;
+				float: none;
+			}
+
+			&.account{
+				padding: 17px 0  0 13px;
+
+				@include media('<desktop') {
+					padding: 0;
+				}
+
+				li{
+					margin: 0 0 5px 13px;
+
+					@include media('<desktop') {
+						margin: 0 0 10px;
+					}
+
+					+ li{
+						position: relative;
+
+						&:before{
+							content: '/';
+							position: absolute;
+							top: 0;
+							bottom: 0;
+							left: -10px;
+							color: $yellow;
+
+							@include media('<desktop') {
+								display: none;
+							}
+						}
+					}
+				}
+
+				a{
+					color: $yellow;
+
+					&:hover{
+						color: $white;
+					}
+
+					&:after{
+						left: -5px;
+						right: -5px;
+					}
+				}
+			}
+		}
+
+		li{
+			display: inline-block;
+			vertical-align: top;
+			margin: 0 0 5px 22px;
+
+			@include media('<desktop') {
+				display: block;
+				margin: 0 0 10px;
+			}
+		}
+
+		a{
+			color: $white;
+			position: relative;
+			display: block;
+
+			&:after{
+				content: '';
+				background: $white;
+				height: 1px;
+				position: absolute;
+				left: -9px;
+				right: -9px;
+				bottom: 0;
+				visibility: hidden;
+				opacity: 0;
+				transition: all $animation-speed ease;
+
+				@include media('<desktop') {
+					display: none;
+				}
+			}
+
+			&:hover{
+				color: $yellow;
+				transition: all $animation-speed ease;
+
+				&:after{
+					visibility: visible;
+					opacity: 1;
+					bottom: -24px;
+				}
+			}
+		}
+
+		.active{
+			a{
+				color: $yellow;
+
+				&:after{
+					visibility: visible;
+					opacity: 1;
+					bottom: -24px;
+				}
+			}
+		}
+	}
+}
+
+.opener{
+	float:left;
+	width:35px;
+	height:35px;
+	background:rgba(0, 0, 0, .5);
+	position:relative;
+	border-radius:3px;
+	text-indent:-9999px;
+	overflow:hidden;
+	display: none;
+}
+
+.opener:before,
+.opener:after,
+.opener span{
+	background:#fff;
+	border-radius:4px;
+	position:absolute;
+	top:18px;
+	left:25%;
+	right:25%;
+	height:3px;
+	margin-top:-2px; 
+	transition:all 0.2s linear;
+}
+
+.opener:before,
+.opener:after{
+	content:'';
+	top:13px;
+}
+
+.opener:after{
+	top:23px;
+}
+
+.nav-active .opener span{
+	opacity:0;
+}
+
+.opener:hover{
+	opacity:.9;
+}
+
+.nav-active .opener:after,
+.nav-active .opener:before{
+	transform:rotate(45deg);
+	top:18px;
+	left:15%;
+	right:15%;
+}
+
+.nav-active .opener:after{
+	transform:rotate(-45deg);
+}
+
+@include media('<desktop') {
+	.opener{
+		display:block;
+	}
+
+	.drop{
+		overflow:hidden;
+		position:absolute;
+		top:100%;
+		left: 0;
+		right: 0;
+		z-index:999;
+		float:none;
+		opacity:0;
+		visibility:hidden;
+		transition:opacity 0.3s linear;
+		background: rgba(0,0,0,0.9);
+		padding: 15px 10px 5px;
+	}
+
+	.nav-active .drop{
+		opacity:1;
+		visibility:visible;
+		height:auto;
+		max-width: 1024px;
+	}
+}
